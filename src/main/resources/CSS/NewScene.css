@@ -1,0 +1,8 @@
+
+#textLabel{
+    -fx-font-size:35;
+    -fx-alignment:center;
+}
+#chButton{
+    -fx-background-color:"yellow";
+}

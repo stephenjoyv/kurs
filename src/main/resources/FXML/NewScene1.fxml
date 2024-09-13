@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kurs.kurs.HelloController">
+   <children>
+      <Polygon fill="DODGERBLUE" layoutX="226.0" layoutY="235.0" points="-226.0, 47.0, 374.0, 38.0, 81.0, -235.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text layoutX="220.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scene2" wrappingWidth="159.13671875">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Text>
+      <Button fx:id="chButton1" layoutX="262.0" layoutY="320.0" mnemonicParsing="false" onAction="#setScene1" text="changeScene" />
+   </children>
+</AnchorPane>

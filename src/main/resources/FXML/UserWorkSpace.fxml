@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kurs.kurs.UserWorkSpaceController">
+   <children>
+      <BorderPane fx:id="left_menu" layoutX="-266.0" layoutY="51.0" prefHeight="498.0" prefWidth="1358.0" visible="false">
+         <left>
+            <VBox fx:id="menuPanel" prefHeight="394.0" prefWidth="205.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#chooseBook" prefHeight="63.0" prefWidth="208.0" text="Выбрать книгу">
+                     <VBox.margin>
+                        <Insets bottom="35.0" top="35.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#publicBook" prefHeight="63.0" prefWidth="208.0" text="Опубликовать собственную книгу">
+                     <VBox.margin>
+                        <Insets bottom="35.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#authorsBook" prefHeight="63.0" prefWidth="208.0" text="Найти все книги автора">
+                     <VBox.margin>
+                        <Insets bottom="35.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+      </BorderPane>
+      <Button fx:id="menuButton" layoutX="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="75.0" prefWidth="197.0" />
+      <Button fx:id="menuButton1" layoutX="15.0" mnemonicParsing="false" onAction="#secondClick" prefHeight="75.0" prefWidth="197.0" text="Close Menu" visible="false">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <AnchorPane fx:id="search_pane" layoutX="242.0" layoutY="94.0" prefHeight="457.0" prefWidth="836.0" visible="false">
+         <children>
+            <Region fx:id="find" prefHeight="457.0" prefWidth="836.0" />
+            <Region fx:id="search" prefHeight="445.0" prefWidth="824.0" />
+            <VBox layoutX="14.0" layoutY="119.0" prefHeight="200.0" prefWidth="278.0" spacing="30.0">
+               <children>
+                  <AnchorPane prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg1" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название книги" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="find_book" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Книга" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg2" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя Автора" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="find_author" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Автор" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="93.0" prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg3" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год Редакции" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="find_red" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Редакция" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="12.0" prefWidth="295.0">
+               <children>
+                  <Region fx:id="tit" prefHeight="81.0" prefWidth="272.0" />
+                  <Text layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Какую книгу вы хотите найти ?" wrappingWidth="294.13671875">
+                     <font>
+                        <Font name="Times New Roman" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#findBook" prefHeight="31.0" prefWidth="107.0" text="Найти">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Button>
+            <AnchorPane fx:id="sorry_book" layoutX="420.0" layoutY="50.0" prefHeight="215.0" prefWidth="272.0" visible="false">
+               <children>
+                  <Text layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="К сожалению такой книги нет">
+                     <font>
+                        <Font name="Times New Roman" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Text fx:id="nofind_text" layoutX="316.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="К сожалению, книга не найдена." wrappingWidth="214.6181640625">
+               <font>
+                  <Font name="Times New Roman" size="23.0" />
+               </font>
+            </Text>
+            <AnchorPane fx:id="details" layoutX="316.0" layoutY="27.0" prefHeight="432.0" prefWidth="527.0">
+               <children>
+                  <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Найдена книга!">
+                     <font>
+                        <Font name="Times New Roman" size="23.0" />
+                     </font>
+                  </Text>
+                  <VBox layoutX="90.0" layoutY="42.0" prefHeight="200.0" prefWidth="278.0" spacing="5.0">
+                     <children>
+                        <AnchorPane prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg12" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название книги" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_nam" layoutX="188.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg22" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя Автора" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_autho" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="93.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg32" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год Редакции" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_re" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop1" layoutX="10.0" layoutY="126.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg3215" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text fx:id="new_book_nam5" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество стр." wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_le" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop2" layoutX="10.0" layoutY="184.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg32117" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Описание" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_de" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop3" layoutX="10.0" layoutY="242.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg321118" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Средняя оценка" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_mar" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="red_warning" layoutX="400.0" layoutY="400.0" prefHeight="59.0" prefWidth="383.0">
+               <children>
+                  <Text layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="В поле &quot;&quot;Редакция обнаружены сиволы! Срочно замените их" wrappingWidth="344.0">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="empty_warning" layoutX="400.0" layoutY="400.0" prefHeight="52.0" prefWidth="272.0">
+               <children>
+                  <Text layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одно или несколько полей не заполнено!" wrappingWidth="272.0">
+                     <font>
+                        <Font name="Times New Roman" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="550.0" prefHeight="45.0" prefWidth="179.0">
+               <children>
+                  <Region fx:id="exit_btn" layoutX="14.0" layoutY="7.0" prefHeight="45.0" prefWidth="183.0" />
+                  <Button fx:id="exit_search" alignment="CENTER" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#exit_search" prefHeight="45.0" prefWidth="183.0" text="Закрыть">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Button fx:id="det_but" alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="360.0" mnemonicParsing="false" onAction="#showDop" prefHeight="45.0" prefWidth="121.0" text="Подробнее">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="public_pane" layoutX="242.0" layoutY="94.0" prefHeight="457.0" prefWidth="660.0" visible="false">
+         <children>
+            <Region fx:id="find1" prefHeight="457.0" prefWidth="805.0" />
+            <Region fx:id="search1" prefHeight="445.0" prefWidth="800.0" />
+            <VBox layoutX="14.0" layoutY="119.0" prefHeight="200.0" prefWidth="278.0" spacing="30.0">
+               <children>
+                  <AnchorPane prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg11" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название книги" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="field1" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Книга" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg21" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Длина книги" wrappingWidth="179.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="field2" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Длина" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="93.0" prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg31" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год Редакции" wrappingWidth="179.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="field3" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Редакция" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="81.0" prefWidth="355.0">
+               <children>
+                  <Region fx:id="tit1" layoutX="-7.0" prefHeight="81.0" prefWidth="362.0" />
+                  <Text layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите данные для публикации книги" wrappingWidth="355.0">
+                     <font>
+                        <Font name="Times New Roman" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#send" prefHeight="31.0" prefWidth="114.0" text="Отправить">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Button>
+            <VBox layoutX="398.0" layoutY="121.0" prefHeight="200.0" prefWidth="278.0" spacing="50.0">
+               <children>
+                  <AnchorPane fx:id="tags_pane" prefHeight="98.0" prefWidth="375.0">
+                     <children>
+                        <Region fx:id="reg111" layoutX="-8.0" prefHeight="52.0" prefWidth="414.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Теги" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <ListView fx:id="tags_list" editable="true" layoutX="-4.0" layoutY="60.0" orientation="HORIZONTAL" prefHeight="52.0" prefWidth="385.0" />
+                        <Text layoutX="188.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите теги (CTRL)">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg211" layoutX="-8.0" prefHeight="52.0" prefWidth="406.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Описание" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="field4" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Описание" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <AnchorPane fx:id="sending" layoutX="171.0" layoutY="353.0" prefHeight="45.0" prefWidth="295.0">
+               <children>
+                  <Text layoutX="59.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Запрос отправлен" wrappingWidth="337.0">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="59.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../IMG/plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="error" layoutX="169.0" layoutY="353.0" prefHeight="45.0" prefWidth="295.0" visible="false">
+               <children>
+                  <Text layoutX="59.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ошибка данные введены неверно" wrappingWidth="337.0">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="59.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../IMG/min.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="550.0" prefHeight="45.0" prefWidth="179.0">
+               <children>
+                  <Region fx:id="exit_btn1" layoutX="14.0" layoutY="7.0" prefHeight="45.0" prefWidth="183.0" />
+                  <Button alignment="CENTER" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#exit_send" prefHeight="45.0" prefWidth="183.0" text="Закрыть">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="lib_public" layoutX="217.0" layoutY="49.0" prefHeight="498.0" prefWidth="650.0" visible="false">
+         <children>
+            <Region fx:id="lib_bg" prefHeight="489.0" prefWidth="650.0" />
+            <Region fx:id="lib_membrane" minHeight="498.0" prefHeight="498.0" prefWidth="640.0" />
+            <AnchorPane fx:id="details1" layoutX="-1.0" layoutY="56.0" prefHeight="376.0" prefWidth="642.0">
+               <children>
+                  <Button layoutX="285.0" mnemonicParsing="false" onAction="#againRequests" prefHeight="3.0" prefWidth="171.0" text="Назад к заявкам">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Найдена заявка!">
+                     <font>
+                        <Font name="Times New Roman" size="23.0" />
+                     </font>
+                  </Text>
+                  <VBox layoutX="90.0" layoutY="42.0" prefHeight="200.0" prefWidth="278.0" spacing="5.0">
+                     <children>
+                        <AnchorPane prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg121" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название книги" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_nam1" layoutX="188.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg221" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя Автора" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_autho1" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="93.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg321" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год Редакции" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_re1" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop11" layoutX="10.0" layoutY="126.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg3211" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text fx:id="new_book_nam12" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество стр." wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_le1" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop21" layoutX="10.0" layoutY="184.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg321211" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Описание" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_de1" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop31" layoutX="10.0" layoutY="242.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg321111" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Средняя оценка" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="new_book_mar1" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <Button layoutX="243.0" layoutY="392.0" mnemonicParsing="false" onAction="#reject_publication" prefHeight="28.0" prefWidth="152.0" text="Отклонить">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="90.0" layoutY="393.0" mnemonicParsing="false" onAction="#accept_publication" prefHeight="25.0" prefWidth="131.0" text="Опубликовать">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="included_public" layoutX="-2.0" layoutY="56.0" prefHeight="343.0" prefWidth="651.0" visible="false">
+               <children>
+                  <ListView fx:id="books_list" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="649.0" />
+                  <Button alignment="CENTER" layoutX="93.0" layoutY="290.0" mnemonicParsing="false" onAction="#check_detailed_book" prefHeight="59.0" prefWidth="451.0" text="Открыть описание">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Button>
+                  <Text fx:id="lib_bookNotChoosed" layoutX="234.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Книга не выбрана">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="463.0" prefHeight="45.0" prefWidth="179.0">
+               <children>
+                  <Region fx:id="exit_btn11" layoutX="-14.0" prefHeight="59.0" prefWidth="197.0" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit_accept" prefHeight="45.0" prefWidth="183.0" text="Закрыть">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <HBox fx:id="admin_panel" layoutX="477.0" layoutY="581.0" prefHeight="55.0" prefWidth="660.0">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#diagramm1" prefHeight="130.0" prefWidth="203.0" text="Диаграмма авторов">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#diagramm2" prefHeight="130.0" prefWidth="203.0" text="Диарграмма жанров">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#showDel" prefHeight="130.0" prefWidth="203.0" text="Удалить книгу">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="lib_panel" layoutX="477.0" layoutY="581.0" prefHeight="55.0" prefWidth="660.0" visible="false">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#books_request" prefHeight="55.0" prefWidth="661.0" text="Заявки на книги">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Button layoutX="939.0" layoutY="15.0" mnemonicParsing="false" onAction="#toMenu" prefHeight="46.0" prefWidth="139.0" text="Вернуться в меню" />
+      <AnchorPane fx:id="authors_book" layoutX="217.0" layoutY="93.0" prefHeight="476.0" prefWidth="660.0" visible="false">
+         <children>
+            <Region fx:id="author_bg" prefHeight="476.0" prefWidth="660.0" />
+            <AnchorPane fx:id="details_1" layoutX="-1.0" layoutY="56.0" prefHeight="376.0" prefWidth="642.0" visible="false">
+               <children>
+                  <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выбранная книга">
+                     <font>
+                        <Font name="Times New Roman" size="23.0" />
+                     </font>
+                  </Text>
+                  <VBox layoutX="90.0" layoutY="42.0" prefHeight="200.0" prefWidth="278.0" spacing="5.0">
+                     <children>
+                        <AnchorPane prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg1211" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название книги" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="author_name" layoutX="188.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg2211" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя Автора" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="author_author" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="93.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg32511" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год Редакции" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="author_res" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop111" layoutX="10.0" layoutY="126.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg32111" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество стр." wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="author_len" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop211" layoutX="10.0" layoutY="184.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg321911" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Описание" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="author_des" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dop311" layoutX="10.0" layoutY="242.0" prefHeight="36.0" prefWidth="354.0">
+                           <children>
+                              <Region fx:id="reg3211111" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                              <Line endX="180.0" startX="180.0" startY="52.0" />
+                              <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Средняя оценка" wrappingWidth="294.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="author_mark" layoutX="188.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="179.13671875">
+                                 <font>
+                                    <Font name="Times New Roman" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <Button layoutX="460.0" mnemonicParsing="false" onAction="#again_author" prefHeight="3.0" prefWidth="171.0" text="Выбрать книгу">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="included_public_1" layoutX="-2.0" layoutY="56.0" prefHeight="343.0" prefWidth="651.0">
+               <children>
+                  <AnchorPane layoutY="31.0" prefHeight="38.0" prefWidth="598.0">
+                     <children>
+                        <Region fx:id="author_title" prefHeight="38.0" prefWidth="598.0" />
+                        <Text layoutX="-2.0" layoutY="-24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите имя автора" x="50.0" y="50.0">
+                           <font>
+                              <Font name="Times New Roman" size="23.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="field_for_author" alignment="CENTER" layoutX="314.0" layoutY="11.0" prefHeight="16.0" prefWidth="200.0" promptText="Автор" />
+                     </children>
+                  </AnchorPane>
+                  <ListView fx:id="books_list_1" layoutX="1.0" layoutY="119.0" orientation="HORIZONTAL" prefHeight="112.0" prefWidth="649.0" />
+                  <Button alignment="CENTER" layoutX="93.0" layoutY="290.0" mnemonicParsing="false" onAction="#check_detailed_book_1" prefHeight="59.0" prefWidth="451.0" text="Открыть описание">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="262.0" layoutY="72.0" mnemonicParsing="false" onAction="#loadAuthorsBooks" prefHeight="38.0" prefWidth="114.0" text="Открыть список">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="450.0" prefHeight="45.0" prefWidth="179.0" visible="false">
+               <children>
+                  <Region fx:id="exit_btn111" layoutX="-14.0" prefHeight="59.0" prefWidth="197.0" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit_authors_book" prefHeight="45.0" prefWidth="183.0" text="Закрыть">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="463.0" layoutY="14.0" prefHeight="45.0" prefWidth="179.0">
+               <children>
+                  <Region fx:id="exit_btn112" layoutX="-14.0" prefHeight="59.0" prefWidth="197.0" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit_author" prefHeight="45.0" prefWidth="183.0" text="Закрыть">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Text fx:id="bookNotSelected" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Книга не выбрана" visible="false" x="240.0">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="del_pane" layoutX="242.0" layoutY="94.0" prefHeight="457.0" prefWidth="836.0" visible="false">
+         <children>
+            <Region fx:id="find2" prefHeight="457.0" prefWidth="836.0" />
+            <Region fx:id="search2" prefHeight="445.0" prefWidth="824.0" />
+            <VBox layoutX="14.0" layoutY="119.0" prefHeight="200.0" prefWidth="278.0" spacing="30.0">
+               <children>
+                  <AnchorPane prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg44" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название книги" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="del_name" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Книга" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg45" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя Автора" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="del_author" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Автор" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="93.0" prefHeight="36.0" prefWidth="354.0">
+                     <children>
+                        <Region fx:id="reg46" layoutX="-8.0" prefHeight="52.0" prefWidth="383.0" />
+                        <Line endX="180.0" startX="180.0" startY="52.0" />
+                        <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год Редакции" wrappingWidth="294.13671875">
+                           <font>
+                              <Font name="Times New Roman" size="22.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="del_red" layoutX="196.0" layoutY="14.0" prefHeight="24.0" prefWidth="170.0" promptText="Редакция" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="12.0" prefWidth="295.0">
+               <children>
+                  <Region fx:id="tit2" prefHeight="81.0" prefWidth="272.0" />
+                  <Text layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Какую книгу вы хотите удалить ?" wrappingWidth="294.13671875">
+                     <font>
+                        <Font name="Times New Roman" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="31.0" prefWidth="107.0" text="Удалить">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Button>
+            <AnchorPane fx:id="sorry_book1" layoutX="420.0" layoutY="50.0" prefHeight="215.0" prefWidth="272.0" visible="false" />
+            <Text fx:id="del_suc" layoutX="316.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Книга удалена">
+               <font>
+                  <Font name="Times New Roman" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="nofind_text1" layoutX="316.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="К сожалению, книга не найдена." wrappingWidth="214.6181640625">
+               <font>
+                  <Font name="Times New Roman" size="23.0" />
+               </font>
+            </Text>
+            <AnchorPane fx:id="red_warning1" layoutX="400.0" layoutY="400.0" prefHeight="59.0" prefWidth="383.0">
+               <children>
+                  <Text layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="В поле &quot;&quot;Редакция обнаружены сиволы! Срочно замените их" wrappingWidth="344.0">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="empty_warning1" layoutX="400.0" layoutY="400.0" prefHeight="52.0" prefWidth="272.0">
+               <children>
+                  <Text layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одно или несколько полей не заполнено!" wrappingWidth="272.0">
+                     <font>
+                        <Font name="Times New Roman" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="550.0" prefHeight="45.0" prefWidth="179.0">
+               <children>
+                  <Region fx:id="exit_btn2" layoutX="14.0" layoutY="7.0" prefHeight="45.0" prefWidth="183.0" />
+                  <Button fx:id="exit_search1" alignment="CENTER" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#exit_del" prefHeight="45.0" prefWidth="183.0" text="Закрыть">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="diagramm1_pane" layoutX="227.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <children>
+            <PieChart fx:id="pch" prefHeight="533.0" prefWidth="660.0" visible="false" />
+            <Button alignment="CENTER" layoutX="480.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit_diagramm1" prefHeight="53.0" prefWidth="168.0" text="Закрыть">
+               <font>
+                  <Font name="Times New Roman" size="33.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="diagramm2_pane" layoutX="253.0" layoutY="66.0" prefHeight="476.0" prefWidth="598.0">
+         <children>
+            <Button alignment="CENTER" layoutX="425.0" layoutY="7.0" mnemonicParsing="false" onAction="#exit_diagramm2" prefHeight="38.0" prefWidth="159.0" text="Закрыть">
+               <font>
+                  <Font name="Times New Roman" size="33.0" />
+               </font>
+            </Button>
+            <PieChart fx:id="diagramm2_chart" layoutY="52.0" prefHeight="420.0" prefWidth="598.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

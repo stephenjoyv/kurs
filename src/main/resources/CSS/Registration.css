@@ -1,0 +1,7 @@
+#rightSide{
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color:#44C1A5;
+}
+#toMenu{
+    -fx-background-color: linear-gradient(to left top,#44C1A5,#c7f4ea);
+}

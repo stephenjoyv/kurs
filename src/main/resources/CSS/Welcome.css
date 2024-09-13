@@ -1,0 +1,26 @@
+#underRect{
+    -fx-background-radius: 30 0 30 0;
+    -fx-background-color: "black";
+    -fx-border-width: 2px 0px 2px 2px;
+    -fx-border-color: "red";
+    -fx-border-radius: 30 0 30 0;
+}
+#textBg{
+    -fx-background-radius: 0 0 25 25;
+    -fx-background-color:"black";
+}
+.button{
+    -fx-background-image: url("../IMG/tree_o.jpg");
+    -fx-border-width: 0px 0px 4px 0px;
+    -fx-background-radius: 30 0 30 0;
+    -fx-border-color: "red";
+}
+#textTwo{
+    -fx-text-fill: "RED";
+    -fx-color: #FF2E2E;
+    -fx-background-color: "red";
+}
+
+#registration{
+
+}
