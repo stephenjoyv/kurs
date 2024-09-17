@@ -2,7 +2,15 @@
     -fx-background-radius: 20 20 20 20;
     -fx-background-color:#44C1A5;
 }
-#toMenu{
+#toMenu {
     -fx-background-radius: 20 20 20 20;
-        -fx-background-color:#44C1A5;
+    -fx-background-color: #44C1A5;
+
+}
+.button{
+    -fx-background-color: linear-gradient(to top right, #a0ff97, #ffda8f);
+    -fx-background-radius: 40 40 40 40;
+}
+.button:hover{
+    -fx-font-weight:bold;
 }

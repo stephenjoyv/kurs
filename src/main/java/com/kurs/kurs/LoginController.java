@@ -92,7 +92,8 @@ public class LoginController {
     }
     public void toUserWorkSpace(ActionEvent e,String user, String stat){
         try {
-            FXMLLoader loader =new FXMLLoader(getClass().getResource("/FXML/UserWorkSpace.fxml"));
+            //System.out.println(getClass().getResource("/FXML/UserWorkSpace.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/UserWorkSpace.fxml"));
 
 
             root = loader.load();

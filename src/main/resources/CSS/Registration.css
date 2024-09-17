@@ -3,5 +3,13 @@
     -fx-background-color:#44C1A5;
 }
 #toMenu{
-    -fx-background-color: linear-gradient(to left top,#44C1A5,#c7f4ea);
+    -fx-background-color: linear-gradient(to left top, #796029, #f1e35c);
+}
+.button{
+    -fx-background-color: linear-gradient(to top right, #a0ff97, #ffda8f);
+    -fx-background-radius: 40 40 40 40;
+    -fx-font-size: 17pt;
+}
+.button:hover{
+    -fx-font-weight:bold;
 }

@@ -18,6 +18,7 @@ public class DB {
     private String db_user;
     private String db_password;
     private String db_url;
+    private String host_url;
     private Connection db_con;
     public DB()
     {
@@ -25,6 +26,7 @@ public class DB {
         db_user = "postgres";
         db_password = "root";
         db_url = "jdbc:postgresql://localhost:5432/"+db_name;
+        host_url = "jdbc:postgresql://localhost:5432/";
         db_con = null;
         try{
             Class.forName("org.postgresql.Driver");
@@ -39,11 +41,82 @@ public class DB {
         try{
             db_con = DriverManager.getConnection(db_url, db_user, db_password);
         }
+        catch (org.postgresql.util.PSQLException e){
+            System.out.println("DB isn't initialized");
+            initNewDb();
+            initTablesInDb();
+        }
         catch (Exception e){
             System.out.println(e.toString());
         }
     }
+    private void initTablesInDb(){
+        String request = "create table tags (\n" +
+                "            id SERIAL PRIMARY KEY,\n" +
+                "            name VARCHAR(30)\n" +
+                "            );\n"+
+                "create table books (\n" +
+                "            id SERIAL PRIMARY KEY,\n" +
+                "            name VARCHAR(100),\n" +
+                "            release INT,\n" +
+                "            length INT,\n" +
+                "            tags VARCHAR(30)[],\n" +
+                "            description VARCHAR(1000),\n" +
+                "            marks INT DEFAULT 0\n" +
+                "            );\n" +
+                "create table marks(\n" +
+                "    id SERIAL PRIMARY KEY,\n" +
+                "    comment VARCHAR(100),\n" +
+                "    book INT,\n" +
+                "    mark INT DEFAULT 0\n" +
+                "    \n" +
+                ");\n" +
+                "create table request_books (\n" +
+                "            id SERIAL PRIMARY KEY,\n" +
+                "            name VARCHAR(100),\n" +
+                "            release INT,\n" +
+                "            length INT,\n" +
+                "            tags VARCHAR(30)[],\n" +
+                "            description VARCHAR(1000),\n" +
+                "            marks INT DEFAULT 0\n" +
+                "            );\n" +
+                "create table logins (\n" +
+                "              id SERIAL PRIMARY KEY,\n" +
+                "              login VARCHAR(100),\n" +
+                "              password VARCHAR(100),\n" +
+                "                role VARCHAR(100),\n" +
+                "              last_enter DATE\n," +
+                " birthday DATE\n" +
+                "            );\n" +
+                "            create table authors (\n" +
+                "              id SERIAL PRIMARY KEY,\n" +
+                "              name VARCHAR(100),\n" +
+                "              books INT DEFAULT 0,\n" +
+                "              maximum_size INT DEFAULT 0\n" +
+                "            );";
 
+        try{
+            db_con = DriverManager.getConnection(db_url,db_user,db_password);
+            Statement st = db_con.createStatement();
+            st.execute(request);
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+        }
+
+    }
+    private void initNewDb(){
+        String request = "create database library;";
+
+        try{
+            Connection tempCon = DriverManager.getConnection(host_url,db_user,db_password);
+            Statement st = tempCon.createStatement();
+            st.execute(request);
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
     public boolean checkUser(String name, String password,String date){
         try {
             Statement st = db_con.createStatement();

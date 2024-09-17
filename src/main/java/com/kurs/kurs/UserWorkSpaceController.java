@@ -33,8 +33,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class UserWorkSpaceController {
-    @FXML
-    private AnchorPane sliderMenu;
+//    @FXML
+//    private AnchorPane sliderMenu;
     @FXML
     private VBox menuPanel;
     @FXML
@@ -115,7 +115,9 @@ public class UserWorkSpaceController {
     @FXML
     private AnchorPane details;
     @FXML
-    private AnchorPane dop1, dop2, dop3;
+    private AnchorPane dop1,
+            dop2,
+            dop3;
     @FXML
     private Text nofind_text;
     @FXML
@@ -131,9 +133,11 @@ public class UserWorkSpaceController {
     @FXML
     private HBox admin_panel;
     @FXML
-    private ListView<Book> books_list, books_list_1;
+    private ListView<Book> books_list,
+            books_list_1;
     @FXML
-    private AnchorPane included_public, included_public_1;
+    private AnchorPane included_public,
+            included_public_1;
     @FXML
     private AnchorPane details1;
     @FXML
@@ -153,7 +157,6 @@ public class UserWorkSpaceController {
     private AnchorPane details_1;
     @FXML
     private AnchorPane authors_book;
-
     @FXML
     private Text bookNotSelected;
     @FXML
@@ -161,9 +164,12 @@ public class UserWorkSpaceController {
     @FXML
     private AnchorPane del_pane;
     @FXML
-    private TextField del_name,del_author,del_red;
+    private TextField del_name,
+            del_author,
+            del_red;
     @FXML
-    private Text del_suc,nofind_text1;
+    private Text del_suc,
+            nofind_text1;
     @FXML
     private AnchorPane diagramm1_pane;
     @FXML

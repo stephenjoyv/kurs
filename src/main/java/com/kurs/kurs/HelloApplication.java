@@ -47,30 +47,6 @@ public class HelloApplication extends Application {
             HelloController hc = loader.getController();
             hc.title();
 
-//            create table logins (
-//              id SERIAL PRIMARY KEY,
-//              login VARCHAR(100),
-//              password VARCHAR(100),
-//                status VARCHAR(100)
-//              last_enter DATE
-//            );
-//            Authorization au = new Authorization();
-//            au.login("Jen","312541");
-
-//            create table authors (
-//              id SERIAL PRIMARY KEY,
-//              name VARCHAR(100),
-//              books INT DEFAULT 0,
-//              maximum_size INT DEFAULT 0
-//            );
-//            create table books (
-//              id SERIAL PRIMARY KEY,
-//              name VARCHAR(100),
-//                release INT,
-//                length INT,
-//              books INT DEFAULT 0,
-//              maximum_size INT DEFAULT 0
-//            );
             stage.setScene(scene);
             stage.show();
 //            DB database = new DB();
