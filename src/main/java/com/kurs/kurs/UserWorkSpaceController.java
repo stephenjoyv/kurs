@@ -434,14 +434,14 @@ public class UserWorkSpaceController {
             db.insertAnimal(animalForPublication);
         }
     }
-    public void publicBook(ActionEvent e) {
+    public void publicAnimal(ActionEvent e) {
         public_pane.setVisible(true);
         search_pane.setVisible(false);
         exit_search();
         exit_author(e);
     }
 
-    public void chooseBook() {
+    public void chooseAnimal() {
         public_pane.setVisible(false);
         search_pane.setVisible(true);
         red_warning.setVisible(false);
@@ -457,7 +457,7 @@ public class UserWorkSpaceController {
         dop3.setVisible(true);
     }
 
-    public void findBook(ActionEvent e) {
+    public void findAnimal(ActionEvent e) {
 
 
         nofind_text.setVisible(false);
@@ -503,7 +503,7 @@ public class UserWorkSpaceController {
 
     }
 
-    public void authorsBook() {
+    public void authorsAnimal() {
 
     }
 
@@ -610,7 +610,7 @@ public class UserWorkSpaceController {
         lib_public.setVisible(false);
     }
 
-    public void books_request() {
+    public void animals_request() {
         lib_public.setVisible(true);
 
     }
@@ -634,7 +634,7 @@ public class UserWorkSpaceController {
         }
     }
 
-    public void authorsBook(ActionEvent e) {
+    public void authorsAnimal(ActionEvent e) {
         authors_book.setVisible(true);
         exit_search();
         exit_send();
@@ -646,7 +646,7 @@ public class UserWorkSpaceController {
 
     }
 
-    public void loadAuthorsBooks(ActionEvent e) {
+    public void loadAuthorsAnimals(ActionEvent e) {
         DB db = new DB();
         db.connectToDb();
         books_list_1.getItems().clear();

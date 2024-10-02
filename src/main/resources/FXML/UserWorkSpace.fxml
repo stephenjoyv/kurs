@@ -22,17 +22,17 @@
          <left>
             <VBox fx:id="menuPanel" prefHeight="394.0" prefWidth="205.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#chooseBook" prefHeight="63.0" prefWidth="208.0" text="Купить животное">
+                  <Button mnemonicParsing="false" onAction="#chooseAnimal" prefHeight="63.0" prefWidth="208.0" text="Купить животное">
                      <VBox.margin>
                         <Insets bottom="35.0" top="35.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#publicBook" prefHeight="63.0" prefWidth="208.0" text="Заявка на животного">
+                  <Button mnemonicParsing="false" onAction="#publicAnimal" prefHeight="63.0" prefWidth="208.0" text="Заявка на животного">
                      <VBox.margin>
                         <Insets bottom="35.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#authorsBook" prefHeight="63.0" prefWidth="208.0" text="Найти животных владельца">
+                  <Button mnemonicParsing="false" onAction="#authorsAnimal" prefHeight="63.0" prefWidth="208.0" text="Найти животных владельца">
                      <VBox.margin>
                         <Insets bottom="35.0" />
                      </VBox.margin>
@@ -104,7 +104,7 @@
                   </Text>
                </children>
             </AnchorPane>
-            <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#findBook" prefHeight="31.0" prefWidth="107.0" text="Найти">
+            <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#findAnimal" prefHeight="31.0" prefWidth="107.0" text="Найти">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
@@ -599,7 +599,7 @@
       </HBox>
       <HBox fx:id="lib_panel" layoutX="477.0" layoutY="581.0" prefHeight="55.0" prefWidth="660.0" visible="false">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#books_request" prefHeight="55.0" prefWidth="661.0" text="Заявки на публикацию">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#animals_request" prefHeight="55.0" prefWidth="661.0" text="Заявки на публикацию">
                <font>
                   <Font name="Times New Roman" size="20.0" />
                </font>
@@ -743,7 +743,7 @@
                         <Font name="Times New Roman" size="22.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" layoutX="262.0" layoutY="72.0" mnemonicParsing="false" onAction="#loadAuthorsBooks" prefHeight="38.0" prefWidth="114.0" text="Открыть список">
+                  <Button alignment="CENTER" layoutX="262.0" layoutY="72.0" mnemonicParsing="false" onAction="#loadAuthorsAnimals" prefHeight="38.0" prefWidth="114.0" text="Открыть список">
                      <font>
                         <Font name="Times New Roman" size="16.0" />
                      </font>
