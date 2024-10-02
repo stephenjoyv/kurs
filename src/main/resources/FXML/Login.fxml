@@ -11,22 +11,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kurs.kurs.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kurs.kurs.LoginController">
    <children>
-      <Region fx:id="rightSide" layoutX="159.0" layoutY="111.0" prefHeight="117.0" prefWidth="433.0" />
-      <Text layoutX="237.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите данные пользователя" textAlignment="CENTER" wrappingWidth="307.13671875">
+      <Region layoutX="159.0" layoutY="94.0" prefHeight="117.0" prefWidth="433.0" styleClass="textBg" />
+      <Region layoutX="194.0" layoutY="23.0" prefHeight="43.0" prefWidth="366.0" styleClass="textBg" />
+      <Text layoutX="192.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите данные пользователя" textAlignment="CENTER" wrappingWidth="366.13671875">
          <font>
-            <Font name="Times New Roman" size="27.0" />
+            <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="login_button" layoutX="307.0" layoutY="306.0" mnemonicParsing="false" onAction="#login" prefHeight="61.0" prefWidth="124.0" text="Войти" />
-      <VBox layoutX="163.0" layoutY="126.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+      <Button fx:id="login_button" layoutX="198.0" layoutY="315.0" mnemonicParsing="false" onAction="#login" prefHeight="61.0" prefWidth="124.0" text="Войти" />
+      <VBox layoutX="198.0" layoutY="111.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
          <children>
             <AnchorPane prefHeight="35.0" prefWidth="355.0">
                <children>
                   <Text layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин" wrappingWidth="165.13671875">
                      <font>
-                        <Font name="Times New Roman" size="27.0" />
+                        <Font size="27.0" />
                      </font>
                   </Text>
                   <TextField fx:id="login_field1" layoutX="165.0" prefHeight="35.0" prefWidth="190.0" promptText="login" />
@@ -36,7 +37,7 @@
                <children>
                   <Text layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль" wrappingWidth="165.13671875">
                      <font>
-                        <Font name="Times New Roman" size="27.0" />
+                        <Font size="24.0" />
                      </font>
                   </Text>
                   <PasswordField fx:id="login_field2" layoutX="165.0" prefHeight="35.0" prefWidth="190.0" />
@@ -58,6 +59,6 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button layoutX="544.0" layoutY="314.0" mnemonicParsing="false" onAction="#toMenu" prefHeight="46.0" prefWidth="139.0" text="Вернуться в меню" />
+      <Button layoutX="414.0" layoutY="316.0" mnemonicParsing="false" onAction="#toMenu" prefHeight="59.0" prefWidth="139.0" text="Вернуться в меню" />
    </children>
 </AnchorPane>

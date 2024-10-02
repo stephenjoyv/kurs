@@ -97,6 +97,12 @@
             </includes>
             </resource>
             <resource>
+                <directory>src/main/resources/SVG</directory>
+                <includes>
+                    <include>**/*.svg</include>
+                </includes>
+            </resource>
+            <resource>
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>**/</include>
@@ -106,6 +112,13 @@
                 <directory>src/main/resources/CSS</directory>
                 <includes>
                     <include>**/*.css</include>
+                    <include>**/*.ttf</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/FT</directory>
+                <includes>
+                    <include>**/*.ttf</include>
                 </includes>
             </resource>
             <resource>

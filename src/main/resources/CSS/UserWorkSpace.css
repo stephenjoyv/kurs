@@ -1,6 +1,7 @@
 #menuPane{
     -fx-background-color: "black";
 }
+
 .button{
     -fx-background-color:"black";
     -fx-text-fill: "white";
@@ -10,15 +11,19 @@
     -fx-text-fill: "white";
 }
 .button{
-    -fx-background-image: url("../IMG/tree_o.jpg");
+    /*-fx-background-image: url("../IMG/tree_o.jpg");*/
+    -fx-background-color: #363636;
     -fx-border-width: 0px 0px 4px 0px;
     -fx-background-radius: 30 0 30 0;
+    -fx-border-radius:  30 0 30 0;
     -fx-border-color: "red";
 }
 #menuButton{
-    -fx-background-image: url("../IMG/menu.png");
+    /*-fx-background-image: url("../IMG/menu.png");*/
+    -fx-background-color: #363636;
     -fx-background-size:cover;
     -fx-background-repeat:no-repeat;
+    -fx-border-radius:  30 0 30 0;
     -fx-border-width: 0px 0px 4px 0px;
     -fx-border-color: "red";
 }
@@ -52,14 +57,12 @@
 
 }
 #find{
-    -fx-background-image: url("../IMG/lib.jpg");
+    /*-fx-background-image: url("../IMG/lib.jpg");*/
+    -fx-background-color: #363636;
+    -fx-border-radius:  30 0 30 0;
     -fx-background-size:cover;
     -fx-background-repeat:no-repeat;
     -fx-background-radius: 6px;
-}
-#search{
-    -fx-background-color: "orange";
-    -fx-opacity: 0.7;
 }
 
 #reg11{
@@ -83,23 +86,21 @@
     -fx-background-color: "white";
     -fx-background-radius: 5px;
 }
-#tit1{
-    -fx-border-width: 0px 0px 4px 4px;
-    -fx-border-color: "red";
-    -fx-border-radius: 4px;
-    -fx-background-color: "white";
-    -fx-background-radius: 5px;
+/*#tit1{*/
+/*    -fx-border-width: 0px 0px 4px 4px;*/
+/*    -fx-border-color: "red";*/
+/*    -fx-border-radius: 4px;*/
+/*    -fx-background-color: "white";*/
+/*    -fx-background-radius: 5px;*/
 
-}
+/*}*/
 #find1{
-    -fx-background-image: url("../IMG/lib.jpg");
+    /*-fx-background-image: url("../IMG/lib.jpg");*/
+    -fx-background-color: #363636;
     -fx-background-size:cover;
     -fx-background-repeat:no-repeat;
     -fx-background-radius: 6px;
-}
-#search1{
-    -fx-background-color: "orange";
-    -fx-opacity: 0.7;
+    -fx-border-radius:  30 0 30 0;
 }
 #reg111{
     -fx-border-width: 2px;
@@ -122,23 +123,7 @@
 #exit_btn1{
     -fx-background-color: "purple";
 }
-#lib_bg{
-    -fx-background-color: linear-gradient(to left top,#F90119,#FB42FF);
-    -fx-background-size:cover;
-    -fx-background-repeat:no-repeat;
-    -fx-background-radius: 6px;
-}
-#lib_membrane{
-    -fx-background-color: "orange";
-    -fx-opacity: 0.2;
-}
 
-#author_bg{
-    -fx-background-color: linear-gradient(to left top,#F90119,#FB42FF);
-    -fx-background-size:cover;
-    -fx-background-repeat:no-repeat;
-    -fx-background-radius: 6px;
-}
 #author_title{
     -fx-border-width: 2px;
     -fx-border-color: "red";
@@ -164,6 +149,49 @@
     -fx-border-width: 2px;
     -fx-border-color: "red";
     -fx-border-radius: 5px;
+    -fx-background-color: "white";
+    -fx-background-radius: 5px;
+}
+.region-id{
+    -fx-border-width: 0px 0px 4px 4px;
+    -fx-border-color: "red";
+    -fx-border-radius: 4px;
+    -fx-background-color: "white";
+    -fx-background-radius: 5px;
+    /*-fx-background-color: linear-gradient(to left top,#F90119,#FB42FF);*/
+}
+.background{
+    /*-fx-background-color: linear-gradient(to left top,#F90119,#FB42FF);*/
+    -fx-background-color: linear-gradient(to top right, #a0ff97, #ffda8f);
+    -fx-background-size:cover;
+    -fx-background-repeat:no-repeat;
+    -fx-background-radius: 6px;
+    -fx-opacity: 0.7;
+}
+
+.balance{
+    -fx-border-width: 4px 4px 4px 4px;
+    /*-fx-background-color: #7cf155;*/
+    -fx-background-color: #252525;
+    -fx-background-radius: 40 40 40 40;
+    -fx-border-radius: 40 40 40 40;
+    -fx-border-color: #414040;
+    -fx-font-family: "Resist Sans Display";
+}
+#cartShopping{
+    -fx-background-image: url("../IMG/cart-shopping.png");
+    -fx-background-size:cover;
+    -fx-background-repeat:no-repeat;
+    -fx-background-color: rgba(137, 255, 223, 0);
+    -fx-opacity: 0.85;
+    -fx-background-radius: none;
+    -fx-border-radius: none;
+    -fx-border-color: none;
+}
+.header{
+    -fx-border-width: 0px 0px 4px 4px;
+    -fx-border-color: "red";
+    -fx-border-radius: 4px;
     -fx-background-color: "white";
     -fx-background-radius: 5px;
 }

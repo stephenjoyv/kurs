@@ -30,6 +30,7 @@ public class HelloApplication extends Application {
         try{
 
             //Class.forName("org.postgresql.Driver");
+            Font ft = Font.loadFont(getClass().getResource("/FT/Resist.ttf").toString().replace("%20"," "),32);
             System.out.println(getClass().getResource("/Welcome.fxml"));
             FXMLLoader loader =new FXMLLoader(getClass().getResource("/FXML/Welcome.fxml"));
             Parent root = loader.load();

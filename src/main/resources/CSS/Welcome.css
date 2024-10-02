@@ -5,7 +5,7 @@
     -fx-border-color: "red";
     -fx-border-radius: 30 0 30 0;
 }
-#textBg{
+.textBg{
     -fx-background-radius: 35 35 35 35;
     -fx-background-color: #e1c885;
 }
@@ -17,17 +17,24 @@
     -fx-background-radius: 40 40 40 40;
     -fx-border-radius: 40 40 40 40;
     -fx-border-color: #e1c885;
-}
-.button:hover Text{
-    -fx-font-weight:bold;
+    -fx-font-family: "Resist Sans Display";
 }
 
-#textTwo:hover{
-    -fx-text-fill: "RED";
-    -fx-color: #FF2E2E;
-    -fx-background-color: "red";
-}
+
+/*#textTwo:hover{*/
+/*    -fx-text-fill: "RED";*/
+/*    -fx-color: #FF2E2E;*/
+/*    -fx-background-color: "red";*/
+/*}*/
 
 #registration{
 
+}
+.button:hover Text{
+    /*-fx-font-weight:bold;*/
+    -fx-font-weight: bold;
+}
+.title{
+    -fx-background-radius: 35 35 35 35;
+    -fx-background-color: #de1818;
 }

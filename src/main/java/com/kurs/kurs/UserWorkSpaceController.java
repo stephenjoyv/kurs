@@ -1,34 +1,26 @@
 package com.kurs.kurs;
 
 import javafx.animation.TranslateTransition;
-import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.swing.*;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -98,7 +90,8 @@ public class UserWorkSpaceController {
     @FXML
     private Text new_book_autho1;
 
-
+    @FXML AnchorPane balanceWarning,
+    balanceSuccess;
     @FXML
     private Text author_name;
     @FXML
@@ -129,11 +122,12 @@ public class UserWorkSpaceController {
     private PieChart pch;
     @FXML
     private PieChart diagramm2_chart;
-
+    @FXML
+    private PieChart diagramm3_chart;
     @FXML
     private HBox admin_panel;
     @FXML
-    private ListView<Book> books_list,
+    private ListView<Animal> books_list,
             books_list_1;
     @FXML
     private AnchorPane included_public,
@@ -144,7 +138,7 @@ public class UserWorkSpaceController {
     private AnchorPane lib_public;
     @FXML
     private AnchorPane red_warning;
-    private Book for_publication;
+    private Animal for_publication;
     @FXML
     private AnchorPane empty_warning;
     @FXML
@@ -174,6 +168,18 @@ public class UserWorkSpaceController {
     private AnchorPane diagramm1_pane;
     @FXML
     private AnchorPane diagramm2_pane;
+    @FXML
+    private AnchorPane diagramm3_pane;
+    @FXML
+    private AnchorPane purchasesPane;
+    @FXML
+    private Button cartShopping;
+    @FXML
+    private Text balanceCounter;
+    @FXML
+    private VBox purchasesBox;
+    @FXML
+    private Text purchasesCount;
 
     public void initialize() {
 
@@ -197,6 +203,7 @@ public class UserWorkSpaceController {
         }
         diagramm1_pane.setVisible(false);
         diagramm2_pane.setVisible(false);
+        diagramm3_pane.setVisible(false);
         authors_book.setVisible(false);
         det_but.setVisible(false);
         nofind_text.setVisible(false);
@@ -213,11 +220,12 @@ public class UserWorkSpaceController {
         error.setVisible(false);
         sending.setVisible(false);
         details.setVisible(false);
+        purchasesPane.setVisible(false);
         tags = db.getTags();
 
         tags_list.getItems().addAll(tags);
         tags_list.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        tags_list.getItems().add("TEST");
+        //tags_list.getItems().add("TEST");
         tags_list.setOnMouseClicked(new EventHandler<Event>() {
 
             @Override
@@ -234,16 +242,18 @@ public class UserWorkSpaceController {
         });
         details1.setVisible(false);
         included_public.setVisible(true);
-        books_list.getItems().addAll(db.findRequestBook());
+        books_list.getItems().addAll(db.findRequestAnimal());
         books_list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        books_list.setCellFactory(lv -> new ListCell<Book>() {
+        books_list.setCellFactory(lv -> new ListCell<Animal>() {
             @Override
-            public void updateItem(Book artwork, boolean empty) {
+            public void updateItem(Animal artwork, boolean empty) {
                 super.updateItem(artwork, empty);
-                setText(empty ? null : "Название книги: " + artwork.getName() + "\nИмя автора: " + artwork.author);
+                setText(empty ? null : "Название книги: " + artwork.getName() + "\nИмя автора: " + artwork.getOwner());
             }
         });
 
+        balanceCounter.setText(Integer.toString(db.checkBalance(LoginController.id)));
+        purchasesCount.setText(Integer.toString(getPurchasesCount()));
     }
 
     public void onClick(ActionEvent e) {
@@ -268,6 +278,115 @@ public class UserWorkSpaceController {
         }
     }
 
+    public void showPurchases(ActionEvent e) {
+        try {
+            DB db = new DB();
+            db.connectToDb();
+            ArrayList<Animal> listAnimal = db.findAnimalsByUser(LoginController.id);
+            purchasesPane.setVisible(true);
+            purchasesBox.getChildren().clear();
+            for(int i=0;i<listAnimal.size();i++){
+                AnchorPane capturePane = new AnchorPane();
+                Text text = new Text();
+                text.setText(String.format("Имя - %s, Возраст - %d, Дата рождения - %s",
+                        listAnimal.get(i).getName(),
+                        listAnimal.get(i).getAge(),
+                        listAnimal.get(i).getBornDate()
+                ));
+                text.setFont(Font.font("Arial Black",20));
+                TextFlow textFlow = new TextFlow();
+                textFlow.getChildren().add(text);
+                textFlow.setStyle("-fx-background-color: linear-gradient(to top right, #e1cf9a, #58baff); " +
+                        "-fx-background-radius: 20 20 20 20;" +
+                        "-fx-text-alignment: center;" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 20 20 20 20;" +
+                        "-fx-border-color: black");
+//                Region region = new Region();
+//                region.getStyleClass().add("header");
+//                region.setPrefHeight(text.getLayoutBounds().getHeight());
+//                region.setPrefWidth(text.getLayoutBounds().getWidth());
+//                region.setLayoutY(-1*text.getLayoutBounds().getHeight());
+                //capturePane.getChildren().addAll(region,text);
+                purchasesBox.setSpacing(5);
+                purchasesBox.getChildren().add(textFlow);
+            }
+            System.out.println("purchases");
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+    public int getPurchasesCount(){
+        DB db = new DB();
+        db.connectToDb();
+        ArrayList<Animal> listAnimal = db.findAnimalsByUser(LoginController.id);
+        return listAnimal.size();
+    }
+    public void closePurchases(ActionEvent e) {
+        try {
+            purchasesPane.setVisible(false);
+            System.out.println("purchases closed");
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+    public void increaseBalance(ActionEvent e){
+        try {
+            DB db = new DB();
+            db.connectToDb();
+            db.increaseBalance(LoginController.id,100);
+            int balance = db.checkBalance(LoginController.id);
+            balanceCounter.setText(Integer.toString(balance));
+        }
+        catch (Exception ex){
+            System.out.println(ex.toString());
+        }
+    }
+    public void decreaseBalance(ActionEvent e){
+        try {
+            DB db = new DB();
+            db.connectToDb();
+            if(db.decreaseBalance(LoginController.id,100)==-1)
+                System.out.println("Нельзя убавить сумму");
+            int balance = db.checkBalance(LoginController.id);
+            balanceCounter.setText(Integer.toString(balance));
+        }
+        catch (Exception ex){
+            System.out.println(ex.toString());
+        }
+    }
+
+    public void buyAnimal(ActionEvent e){
+        try{
+            DB db = new DB();
+            db.connectToDb();
+            Animal animal = db.findAnimal(new_book_autho.getText(),new_book_nam.getText(),new_book_re.getText());
+            if((db.checkBalance(LoginController.id) - animal.getPrice())<0){
+                balanceWarning.setVisible(true);
+                balanceSuccess.setVisible(false);
+                nofind_text.setVisible(false);
+            }
+            else if(animal==null){
+                nofind_text.setVisible(true);
+                balanceWarning.setVisible(false);
+                balanceSuccess.setVisible(false);
+
+            }
+            else{
+                db.decreaseBalance(LoginController.id, animal.getPrice());
+                db.deleteAnimal(animal.getName(),animal.getOwner(),Integer.toString(animal.getAge()));
+                db.animalPurchase(LoginController.id,animal);
+                balanceCounter.setText(Integer.toString(db.checkBalance(LoginController.id)));
+                purchasesCount.setText(Integer.toString(getPurchasesCount()));
+                balanceSuccess.setVisible(true);
+                balanceWarning.setVisible(false);
+                nofind_text.setVisible(false);
+            }
+        }
+        catch (Exception ex){
+            System.out.println(ex.toString());
+        }
+    }
     public void secondClick(ActionEvent e) {
         try {
             TranslateTransition slide = new TranslateTransition();
@@ -290,7 +409,9 @@ public class UserWorkSpaceController {
         if (field1.getText().length() == 0 ||
                 field2.getText().length() == 0 ||
                 field3.getText().length() == 0 ||
-                field4.getText().length() == 0 || tags.size() == 0
+                field4.getText().length() == 0 || tags.size() == 0 ||
+                (Pattern.matches("[a-zA-Z]+", field2.getText()))||
+                (Pattern.matches("[a-zA-Z]+", field3.getText()))
         ) {
             error.setVisible(true);
             sending.setVisible(false);
@@ -299,14 +420,20 @@ public class UserWorkSpaceController {
             error.setVisible(false);
             DB db = new DB();
             db.connectToDb();
-
-            db.insertBook(field1.getText(), Integer.parseInt(field3.getText()), Integer.parseInt(field2.getText()), tags.toArray(String[]::new),
-                    field4.getText(), LoginController.username);
-
-
+            Animal animalForPublication = new Animal();
+            animalForPublication.setName(field1.getText());
+            animalForPublication.setOwner(LoginController.username);
+            animalForPublication.setPrice(Integer.parseInt(field2.getText()));
+            animalForPublication.setAge(Integer.parseInt(field3.getText()));
+            java.time.LocalDate bornDate = java.time.LocalDate.now();
+            bornDate = bornDate.minusYears(animalForPublication.getAge());
+            System.out.println(bornDate.toString());
+            animalForPublication.setBornDate(bornDate.toString());
+            animalForPublication.setDescription(field4.getText());
+            animalForPublication.setTags(tags);
+            db.insertAnimal(animalForPublication);
         }
     }
-
     public void publicBook(ActionEvent e) {
         public_pane.setVisible(true);
         search_pane.setVisible(false);
@@ -320,6 +447,8 @@ public class UserWorkSpaceController {
         red_warning.setVisible(false);
         empty_warning.setVisible(false);
         nofind_text.setVisible(false);
+        balanceWarning.setVisible(false);
+        balanceSuccess.setVisible(false);
     }
 
     public void showDop() {
@@ -332,7 +461,8 @@ public class UserWorkSpaceController {
 
 
         nofind_text.setVisible(false);
-
+        balanceWarning.setVisible(false);
+        balanceSuccess.setVisible(false);
         DB db = new DB();
         db.connectToDb();
         if (!(Pattern.matches("[a-zA-Z]+", find_red.getText()) == false)) {
@@ -349,15 +479,14 @@ public class UserWorkSpaceController {
             red_warning.setVisible(false);
             empty_warning.setVisible(false);
         }
-
-        Book tm = db.findBook(find_author.getText(), find_book.getText(), find_red.getText());
-        if (tm != null) {
-            new_book_nam.setText(tm.name);
-            new_book_autho.setText(tm.author);
-            new_book_de.setText(tm.description);
-            new_book_le.setText(Integer.toString(tm.length));
-            new_book_mar.setText(Integer.toString(tm.marks));
-            new_book_re.setText(Integer.toString(tm.release));
+        Animal animal = db.findAnimal(find_author.getText(),find_book.getText(),find_red.getText());
+        if (animal != null) {
+            new_book_nam.setText(animal.getName());
+            new_book_autho.setText(animal.getOwner());
+            new_book_de.setText(animal.getDescription());
+            new_book_le.setText(Integer.toString(animal.getPrice()));
+            new_book_mar.setText(animal.getBornDate().toString());
+            new_book_re.setText(Integer.toString(animal.getAge()));
             details.setVisible(true);
             det_but.setVisible(true);
             dop1.setVisible(false);
@@ -390,7 +519,7 @@ public class UserWorkSpaceController {
 //            tmdt.add(new PieChart.Data("dthrjn",900));
 //            tmdt.add(new PieChart.Data("cwdwada",300));
             tmdt.forEach(data -> data.nameProperty().bind(Bindings.concat(
-                    data.getName(), " books published ", data.pieValueProperty()
+                    String.format("%s - владелец %s животных",data.getName(), data.getPieValue())
             )));
             pch.getData().clear();
             pch.getData().addAll(tmdt);
@@ -432,26 +561,29 @@ public class UserWorkSpaceController {
     public void exit_diagramm2(){
         diagramm2_pane.setVisible(false);
     }
-    public void check_detailed_book() {
+    public void exit_diagramm3(){
+        diagramm3_pane.setVisible(false);
+    }
+    public void check_detailed_animal() {
         try {
-            ArrayList<Book> tm_list = new ArrayList<Book>();
+            ArrayList<Animal> tm_list = new ArrayList<Animal>();
             if (!books_list.getSelectionModel().getSelectedItems().isEmpty()) {
-                tm_list = (ArrayList<Book>) books_list.getSelectionModel().getSelectedItems().stream().collect(Collectors.toList());
+                tm_list = (ArrayList<Animal>) books_list.getSelectionModel().getSelectedItems().stream().collect(Collectors.toList());
                 details1.setVisible(true);
                 lib_bookNotChoosed.setVisible(false);
-                new_book_nam1.setText(tm_list.get(0).name);
-                new_book_autho1.setText(tm_list.get(0).author);
-                new_book_re1.setText(Integer.toString(tm_list.get(0).release));
-                new_book_de1.setText(tm_list.get(0).description);
-                new_book_le1.setText(Integer.toString(tm_list.get(0).length));
-                new_book_mar1.setText(Integer.toString(tm_list.get(0).marks));
+                new_book_nam1.setText(tm_list.get(0).getName());
+                new_book_autho1.setText(tm_list.get(0).getOwner());
+                new_book_re1.setText(Integer.toString(tm_list.get(0).getAge()));
+                new_book_de1.setText(tm_list.get(0).getDescription());
+                new_book_le1.setText(Integer.toString(tm_list.get(0).getPrice()));
+                new_book_mar1.setText(tm_list.get(0).getBornDate().toString());
             }
             else{
                 lib_bookNotChoosed.setVisible(true);
                 return;
             }
             if (!tm_list.isEmpty()) {
-                System.out.println(tm_list.get(0).author);
+                System.out.println(tm_list.get(0).getOwner());
                 for_publication = tm_list.get(0);
             }
             included_public.setVisible(false);
@@ -463,13 +595,15 @@ public class UserWorkSpaceController {
     public void accept_publication() {
         DB db = new DB();
         db.connectToDb();
-        if (!db.checkBook(for_publication)) {
-            db.public_book(for_publication);
+        if (!db.checkAnimal(for_publication)) {
+            db.publicAnimal(for_publication);
         }
     }
 
     public void reject_publication() {
-
+        DB db = new DB();
+        db.connectToDb();
+        db.rejectAnimal(for_publication);
     }
 
     public void exit_accept() {
@@ -516,41 +650,41 @@ public class UserWorkSpaceController {
         DB db = new DB();
         db.connectToDb();
         books_list_1.getItems().clear();
-        books_list_1.getItems().addAll(db.findBooksByAuthor(field_for_author.getText()));
+        books_list_1.getItems().addAll(db.findAnimalsByAuthor(field_for_author.getText()));
         books_list_1.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        books_list_1.setCellFactory(lv -> new ListCell<Book>() {
+        books_list_1.setCellFactory(lv -> new ListCell<Animal>() {
             @Override
-            public void updateItem(Book artwork, boolean empty) {
+            public void updateItem(Animal artwork, boolean empty) {
                 super.updateItem(artwork, empty);
-                setText(empty ? null : "Название книги: " + artwork.getName() + "\nИмя автора: " + artwork.author);
+                setText(empty ? null : "Имя животного: " + artwork.getName() + "\nИмя автора: " + artwork.getOwner());
             }
         });
 
     }
-    public void check_detailed_book_1(ActionEvent e){
+    public void check_detailed_animal_1(ActionEvent e){
         try
 
         {
-            ArrayList<Book> tm_list = new ArrayList<Book>();
+            ArrayList<Animal> tm_list = new ArrayList<Animal>();
             if (!books_list_1.getSelectionModel().getSelectedItems().isEmpty()) {
-                tm_list = (ArrayList<Book>) books_list_1.getSelectionModel().getSelectedItems().stream().collect(Collectors.toList());
+                tm_list = (ArrayList<Animal>) books_list_1.getSelectionModel().getSelectedItems().stream().collect(Collectors.toList());
                 System.out.println("Size ");
                 System.out.println(tm_list.size());
                 details_1.setVisible(true);
                 bookNotSelected.setVisible(false);
-                author_name.setText(tm_list.get(0).name);
-                author_author.setText(tm_list.get(0).author);
-                author_res.setText(Integer.toString(tm_list.get(0).release));
-                author_des.setText(tm_list.get(0).description);
-                author_len.setText(Integer.toString(tm_list.get(0).length));
-                author_mark.setText(Integer.toString(tm_list.get(0).marks));
+                author_name.setText(tm_list.get(0).getName());
+                author_author.setText(tm_list.get(0).getOwner());
+                author_res.setText(Integer.toString(tm_list.get(0).getAge()));
+                author_des.setText(tm_list.get(0).getDescription());
+                author_len.setText(Integer.toString(tm_list.get(0).getPrice()));
+                author_mark.setText(tm_list.get(0).getBornDate());
             }
             else{
                 bookNotSelected.setVisible(true);
                 return;
             }
             if (!tm_list.isEmpty()) {
-                System.out.println(tm_list.get(0).author);
+                System.out.println(tm_list.get(0).getOwner());
                 for_publication = tm_list.get(0);
             }
             included_public_1.setVisible(false);
@@ -567,13 +701,13 @@ public class UserWorkSpaceController {
         details1.setVisible(false);
         included_public.setVisible(true);
         books_list.getItems().clear();
-        books_list.getItems().addAll(db.findRequestBook());
+        books_list.getItems().addAll(db.findRequestAnimal());
         books_list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        books_list.setCellFactory(lv -> new ListCell<Book>() {
+        books_list.setCellFactory(lv -> new ListCell<Animal>() {
             @Override
-            public void updateItem(Book artwork, boolean empty) {
+            public void updateItem(Animal artwork, boolean empty) {
                 super.updateItem(artwork, empty);
-                setText(empty ? null : "Название книги: " + artwork.getName() + "\nИмя автора: " + artwork.author);
+                setText(empty ? null : "Имя животного: " + artwork.getName() + "\nИмя автора: " + artwork.getOwner());
             }
         });
     }
@@ -587,7 +721,7 @@ public class UserWorkSpaceController {
     public void showDel(ActionEvent e){
         del_pane.setVisible(true);
     }
-    public void deleteBook(ActionEvent e){
+    public void deleteAnimal(ActionEvent e){
         if (!(Pattern.matches("[a-zA-Z]+", del_red.getText()) == false)) {
             red_warning1.setVisible(true);
             empty_warning1.setVisible(false);
@@ -607,10 +741,10 @@ public class UserWorkSpaceController {
         db.connectToDb();
 
 
-        Book tm = db.findBook(del_author.getText(), del_name.getText(), del_red.getText());
+        Animal tm = db.findAnimal(del_author.getText(), del_name.getText(), del_red.getText());
         if (tm != null) {
             try{
-                db.deleteBook(del_name.getText(),del_author.getText(),del_red.getText());
+                db.deleteAnimal(del_name.getText(),del_author.getText(),del_red.getText());
                 del_suc.setVisible(true);
                 nofind_text1.setVisible(false);
             }
@@ -641,6 +775,24 @@ public class UserWorkSpaceController {
         diagramm2_chart.setClockwise(true);
         diagramm2_chart.setLabelsVisible(true);
         diagramm2_chart.setStartAngle(180);
+    }
+    public void diagramm3(ActionEvent e){
+        DB db = new DB();
+        db.connectToDb();
+        diagramm3_pane.setVisible(true);
+        ObservableList<PieChart.Data> tmdt = db.getPopularOwners();
+        tmdt.forEach(data -> data.nameProperty().bind(Bindings.concat(
+         String.format("Владелец %s имеет в своём распоряжении %s животных.",data.getName(),data.getPieValue())
+        )));
+        diagramm3_chart.getData().clear();
+        diagramm3_chart.getData().addAll(tmdt);
+
+
+        diagramm3_chart.setTitle("Relevant authors");
+        diagramm3_chart.setLabelLineLength(55);
+        diagramm3_chart.setClockwise(true);
+        diagramm3_chart.setLabelsVisible(true);
+        diagramm3_chart.setStartAngle(180);
     }
 }
 

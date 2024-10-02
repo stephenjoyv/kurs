@@ -1,11 +1,6 @@
-#rightSide{
+.textBg{
     -fx-background-radius: 20 20 20 20;
-    -fx-background-color:#44C1A5;
-}
-#toMenu {
-    -fx-background-radius: 20 20 20 20;
-    -fx-background-color: #44C1A5;
-
+    -fx-background-color: linear-gradient(to top right, #e1cf9a, #58baff);
 }
 .button{
     -fx-background-color: linear-gradient(to top right, #a0ff97, #ffda8f);
@@ -13,4 +8,7 @@
 }
 .button:hover{
     -fx-font-weight:bold;
+}
+Text{
+    -fx-font-family: Montserrat;
 }

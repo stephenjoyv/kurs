@@ -46,6 +46,7 @@ public class LoginController {
     private Stage stage;
     private Parent root;
     static String username;
+    static int id;
     static String status;
     public void initialize(){
         vis.setVisible(false);
@@ -62,7 +63,7 @@ public class LoginController {
             DB db = new DB();
             db.connectToDb();
             status = db.getUserStatus(username,login_field2.getText());
-
+            id = db.getUserId(username,login_field2.getText());
 
             vis.setVisible(false);
             toUserWorkSpace(e,username,status);
